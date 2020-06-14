@@ -1,0 +1,7 @@
+^sep()
+Lock Screen,slock,system-lock-screen
+Sleep,`systemctl sleep`,system-lock-screen
+Reboot,`systemctl reboot`,system-reboot
+Shutdown,`systemctl poweroff`,system-log-out
+^sep()
+Log Off,killall `wmctrl -m | awk '/Name/ {print tolower($2)}'`,system-log-out
