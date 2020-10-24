@@ -5,19 +5,22 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export PATH="$HOME/.local/bin:$PATH"
 
-juiced -d &
+# battery monitor
+killall -q juiced ; juiced -d &
 
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-gnome-keyring-daemon --start --components=pkcs11 &
+# turn off touchpad
+xinput disable "SynPS/2 Synaptics TouchPad" &
+
+# wallpaper
+nitrogen --restore &
 
 # picom -b &
 # nm-applet &
 # volumeicon &
 # xfce4-power-manager &
-# nitrogen --restore &
-# ksuperkey -e 'Super_L=Alt_L|F1' &
-# ksuperkey -e 'Super_R=Alt_L|F1' &
+
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+gnome-keyring-daemon --start --components=pkcs11 &
+
 xset dpms 600 900 1200
 xset r rate 350 60
-
-fbsetbg -c -r $HOME/wallpaper &

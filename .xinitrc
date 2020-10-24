@@ -16,25 +16,23 @@ fi
 [ -r ~/.xprofile ] && . ~/.xprofile
 
 # launch the session, commands below this line will be ignored
-# exec startfluxbox
-# exec yaxwm
+# exec openbox-session
 
-# multi window managers
-#
 # Window manager for X session
 # to start a different WM, set session="WM" below, or in console run:
 # startx ~/.xinitrc WM
 
 # session to run if none passed as first arg ($1)
-session="${1:-fluxbox}"
+session="${1:-i3}"
 
 # set environment wm for use in scripts
 export WM="$session"
 
 # do NOT put commands below the exec lines
 case $session in
-    fluxbox)    exec startfluxbox ;;
-    yaxwm)      exec yaxwm ;;
+    i3)         exec i3 ;;
+    openbox)    exec ~/.local/bin/openbox/openbox-session ;;
+    dk)         exec dk ;;
     *)          exec "$session" # Unknown, try running it
 esac
 

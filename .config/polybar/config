@@ -15,9 +15,9 @@ include-file = /home/doug/.config/polybar/modules.conf
 [bar/fluxbox-bar]
 inherit = bar/master
 
-modules-left = jgmenu
+modules-left = jgmenu workspaces
 ;modules-center = uptime coreavg load cputemp memory battery wireless-network
-modules-center = coreavg memory battery wireless-network
+modules-center = coreavg cputemp memory battery wireless-network
 modules-right = date
 
 ;;;;;; Tray is commented out ;;;;;;;;
@@ -27,16 +27,15 @@ modules-right = date
 ;tray-offset-x = 20%
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; openbox
+;; fvwm
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-[bar/openbox-bar]
+[bar/fvwm-bar]
 inherit = bar/master
 
-modules-left = appmenu workspaces
-;modules-center = uptime coreavg load core0temp memory battery wireless-network bit-rate
-modules-center =
-modules-right = coregraph ramgraph battgraph wifi-net chronos
+modules-left = jgmenu
+modules-center = coreavg cputemp memory battery wireless-network
+modules-right = clock
 
 ; Position of the system tray window
 ; If empty or undefined, tray support will be disabled
@@ -83,8 +82,8 @@ modules-right = coregraph ramgraph battgraph wifi-net chronos
 [bar/i3-bar]
 inherit = bar/master
 
-modules-left = appmenu i3
-modules-center =
+modules-left = appmenu i3 
+modules-center = 
 ;modules-right = uptime coreavg memory battery wireless-network bit-rate clock
 modules-right = coregraph ramgraph battgraph wifi-net chronos
 
@@ -133,9 +132,9 @@ tray-scale = 1.0
 [bar/bspwm-bar]
 inherit = bar/master
 
-modules-left = jgmenu bspwm
-modules-center =
-modules-right = coreavg cputemp memory battery wireless-network clock
+modules-left = jgmenu bspwm 
+modules-center = coreavg cputemp memory battery wireless-network
+modules-right = clock
 
 ; Position of the system tray window
 ; If empty or undefined, tray support will be disabled
@@ -183,7 +182,7 @@ tray-scale = 1.0
 inherit = bar/master
 
 modules-left = appmenu yaxwm-desktops
-modules-center =
+modules-center = 
 modules-right = coregraph ramgraph battgraph wifi-net chronos
 
 ; Position of the system tray window
@@ -231,8 +230,8 @@ tray-padding = 1
 [bar/graph-bar]
 inherit = bar/master
 
-modules-left = appmenu workspaces
-modules-center =
+modules-left = jgmenu workspaces
+modules-center = 
 modules-right = coregraph ramgraph battgraph wifi-net chronos
 
 ; Position of the system tray window
@@ -263,7 +262,7 @@ tray-background = ${colors.background}
 ;tray-offset-y = 0
 
 ; Pad the sides of each tray icon
-;tray-padding = 1
+tray-padding = 1
 
 ; Scale factor for tray clients
-;tray-scale = 1.0
+tray-scale = 1.0

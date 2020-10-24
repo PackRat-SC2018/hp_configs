@@ -1,5 +1,5 @@
-Terminal,urxvt,utilities-terminal
-Editor,subl3,text-editor
+Terminal,uxterm,utilities-terminal
+Editor,geany,text-editor
 File manager,thunar,system-file-manager
 Browser,firefox,firefox
 Mail,thunderbird,thunderbird

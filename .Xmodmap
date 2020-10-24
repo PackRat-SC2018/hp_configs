@@ -3,4 +3,4 @@
 !
 !uncomment to  change right alt ctrl key to function/special keys
 keysym Alt_R = XF86Mail
-!keysym Control_R = XF86HomePage
+keysym Control_R = XF86Calculator

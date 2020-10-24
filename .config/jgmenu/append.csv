@@ -1,7 +1,7 @@
 ^sep()
-Lock Screen,slock,system-lock-screen
-Sleep,`systemctl sleep`,system-lock-screen
+Lock Screen, i3lock-fancy ,system-lock-screen
+Sleep,`systemctl suspend`,system-lock-screen
 Reboot,`systemctl reboot`,system-reboot
 Shutdown,`systemctl poweroff`,system-log-out
 ^sep()
-Log Off,killall `wmctrl -m | awk '/Name/ {print tolower($2)}'`,system-log-out
+Logoff, session-logout >/dev/null 2>&1 || pkill -15 -t tty"$XDG_VTNR" Xorg ,system-log-out

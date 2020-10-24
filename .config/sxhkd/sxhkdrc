@@ -1,147 +1,119 @@
-#*****************************#
-#***** application binds *****#
-#*****************************#
+# example sxhkdrc for use with dk
+#########################################################
 
 # launcher
-super + p
-    dmenu_run
+alt + p
+	dmenu_run
 
 # terminal
 super + shift + Return
-    urxvt
+	st
 
 alt + F1
     st
 
-# screenshot and selection capture
-#{_,alt + }@Print
-#    scrot {_,-s}
+super + Return
+    st
 
-super + ctrl + Print
-     scrnshot
+# screenshot and selection capture
+{_,alt + }@Print
+	scrot {_,-s}
 
 # dedicated volume keys
 {XF86AudioRaiseVolume,XF86AudioLowerVolume}
-    pamixer {-i,-d} 2
-
-XF86AudioMute
-    pamixer -t
+	pamixer {-i,-d} 2
 
 # dedicated backlight keys
 {XF86MonBrightnessUp,XF86MonBrightnessDown}
-    xbacklight {+10,-10}
+	xbacklight {+10,-10}
 
 # alt volume keys
 alt + {Insert,Delete}
-    pamixer {-i,-d} 2
+	pamixer {-i,-d} 2
 
 # reload sxhkd
 alt + shift + x
-    pkill -USR1 -x sxhkd
+	pkill -USR1 -x sxhkd
+
+alt + F2
+    rofi -show run
+
+Menu
+   thunar
 
 XF86HomePage
    firefox
 
-Menu
-    thunar
+super + control + l
+    geany
 
-super + ctrl + l
-    subl3
-
-super + ctrl + g
+super + control + g
     gimp
 
-super + XF86Mail
-    thunderbird
+# quit dk
+alt + shift + q
+	dkcmd exit
 
-
-#*****************************#
-#********* wm binds **********#
-#*****************************#
-
-# quit yaxwm
-super + shift + q
-    rofi_run -l
-
-super + shift + e
-	yaxwm -c wm exit
-
-# reload yaxwmrc
+# reload dkrc
 alt + shift + r
-	yaxwm -c wm reload
+	dkcmd reload
 
-# restart yaxwm
+# restart dk
 alt + ctrl + shift + r
-	yaxwm -c wm restart
-
-super + q
-    yaxwm -c wm restart
+	dkcmd restart
 
 # focus next or previous window
-#alt + {j,k}
-#	yaxwm -c win focus {next,prev}
-
-alt + Tab
-    yaxwm -c win focus next
-
-alt + shift + Tab
-    yaxwm -c win prev
+alt + {j,k}
+	dkcmd win focus {next,prev}
 
 # close window, swap tiled window in/out of master, cycle tiled windows in place
-# alt + {q,space,Tab}
-alt + {F4,j,k}
-    yaxwm -c win {kill,swap,cycle}
+alt + {q,space,Tab}
+	dkcmd win {kill,swap,cycle}
+
+alt + F4
+    dkcmd win kill
 
 # toggle fullscreen and fake fullscreen (enable manipulating fullscreen window)
 {_,alt + }F11
-	yaxwm -c win {full,fakefull}
+	dkcmd win {full,fakefull}
 
 # toggle floating or sticky
 alt + shift + {space,s}
-	yaxwm -c win {float,stick}
+	dkcmd win {float,stick}
 
 # move window, signed (+/-) for relative changes
 alt + shift + {h,j,k,l}
-	yaxwm -c win resize {x=-10,y=+10,y=-10,x=+10}
+	dkcmd win resize {x=-10,y=+10,y=-10,x=+10}
 
 # resize window, signed (+/-) for relative changes
 alt + ctrl + {h,j,k,l}
-	yaxwm -c win resize {w=-10,h=+10,h=-10,w=+10}
+	dkcmd win resize {w=-10,h=+10,h=-10,w=+10}
 
 # view, send, or follow to a workspace (by number)
 alt + {_,shift + ,ctrl + }{1-9,0}
-	yaxwm -c ws {view,send,follow} {1-9,10}
+	dkcmd ws {view,send,follow} {1-9,10}
 
 # view, send, or follow to the next, previous, last active,
 # next non-empty, or prev non-empty workspace
 alt + {_,shift + ,ctrl + }{bracketleft,bracketright,BackSpace,Left,Right}
-	yaxwm -c ws {view,send,follow} {prev,next,last,prevne,nextne}
+	dkcmd ws {view,send,follow} {prev,next,last,prevne,nextne}
 
 # view, send, or follow to the next, previous, or last active monitor
 alt + {_,shift + ,ctrl + }{comma,period,backslash}
-	yaxwm -c mon {view,send,follow} {prev,next,last}
+	dkcmd mon {view,send,follow} {prev,next,last}
 
 # change active workspace layout
-alt + {t,m,f}
-	yaxwm -c set layout {tile,mono,none}
-
-# toggle padding on the active workspace
-alt + shift + p
-	yaxwm -c print pad | awk 'BEGIN\{ i = 0 \} \{ if ($2 != 0) i++ \} END\{ if (i) exit 1 \}' \
-		&& yaxwm -c set pad l=400 r=400 t=100 b=100 || yaxwm -c set pad l=0 r=0 t=0 b=0
+alt + {t,m,g,s,w,f}
+	dkcmd set layout {tile,mono,grid,spiral,dwindle,none}
 
 # change number of windows in master or first stack
 alt + {_,shift + }{i,d}
-	yaxwm -c set {master,stack} {+1,-1}
+	dkcmd set {master,stack} {+1,-1}
 
 # change gap width
-alt + {equal,minus,apostrophe}
-	yaxwm -c set gap width {+5,-5,reset}
+alt + {equal,minus}
+	dkcmd set gap width {+5,-5}
 
-# change border width (total)
-alt + ctrl + {equal,minus,apostrophe}
-	yaxwm -c set border width {+1,-1,reset}
-
-# change outer border width (double border)
-alt + ctrl + shift + {equal,minus,apostrophe}
-	yaxwm -c set border outer_width {+1,-1,reset}
+# change border widths
+alt + ctrl + {_,shift + }{equal,minus}
+	dkcmd set border {width,outer_width} {+1,-1}

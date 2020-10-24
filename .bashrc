@@ -69,12 +69,12 @@ export LESS_TERMCAP_ZW=$(tput rsupm)
 export PS1='\[\033[0;36m\] ┌ ─ [\l] ─ \[\033[1;34m\][\w]\n \[\033[0;36m\]└ ─ > \[\033[0;37m\]$ \[\033[0;37m\]'
 
 # set editor
-#export EDITOR="$(if [[ -n $DISPLAY ]]; then echo 'subl3'; else echo 'jmacs'; fi)"
-#export VISUAL="$(if [[ -n $DISPLAY ]]; then echo 'subl3'; else echo 'jmacs'; fi)"
+export EDITOR="$(if [[ -n $DISPLAY ]]; then echo 'geany'; else echo 'jmacs'; fi)"
+export VISUAL="$(if [[ -n $DISPLAY ]]; then echo 'geany'; else echo 'jmacs'; fi)"
 
-#if [ -n "$DISPLAY" ]; then
-#    export BROWSER=firefox
-#else
-#    export BROWSER=w3m
-#fi
+if [ -n "$DISPLAY" ]; then
+    export BROWSER=firefox
+else
+    export BROWSER=w3m
+fi
 

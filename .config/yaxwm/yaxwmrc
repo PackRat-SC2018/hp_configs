@@ -1,45 +1,67 @@
 #!/bin/sh
 
-# (re)load sxhkd for keybinds
-pkill sxhkd; sxhkd &
-pkill polybar ; polybar graph-bar &
-
+# example yaxwmrc to show some basic concepts like error reporting
 
 # determine where to place the log file
 logfile="$HOME/.yaxwmrc.log"
 [ -d "$HOME/.local/share/xorg" ] && logfile="$HOME/.local/share/xorg/yaxwmrc.log"
 : > "$logfile"
 
-# Window manager configuration run as a compound command to
-# redirect all output to a file instead of redirecting each command.
-# Not needed but it's nice to be able to tell when there are errors.
-{
+
+# (re)load sxhkd for keybinds
+if hash sxhkd >/dev/null 2>&1; then
+	pkill sxhkd
+	sxhkd &
+fi
+
+# nitrogen --restore &
+
+pkill polybar ; polybar yaxwm-bar &
+
+{ # compound command to redirect all output
+
 	# workspace settings
 	# ------------------------
 	# initialize 10 workspaces (1-10)
 	yaxwm -c set numws=10
 
 	# default workspace values used when allocating new workspaces
-	# can be applied to all existing workspaces when passed 'apply'
+	# can be applied to all existing workspaces when passed 'apply' after ws=default
 	yaxwm -c set ws=default apply layout=tile master=1 stack=4 gap=0 msplit=0.55 ssplit=0.55
 
-	# rename workspace(s)
-	yaxwm -c set ws=1 name="1" ws=2 name="2" ws=3 name="3"
+	# change workspace names
+	# yaxwm -c set ws=1 name="term" ws=2 name="web"
+
+	# change workspace layouts
+	yaxwm -c set ws=10 layout=grid
+
+	# # use static workspaces (not default)
+	# yaxwm -c set static_ws=true
+	# # assign workspaces to monitors (requires static_ws=true)
+	# mon1='DisplayPort-0'
+	# mon2='HDMI-A-0'
+	# yaxwm -c set ws=1 mon=$mon1 ws=2 mon=$mon1 ws=3 mon=$mon1 ws=4 mon=$mon1 ws=5 mon=$mon1
+	# yaxwm -c set ws=6 mon=$mon2 ws=7 mon=$mon2 ws=8 mon=$mon2 ws=9 mon=$mon2 ws=10 mon=$mon2
 
 	# use some padding and gaps on the last workspace
-	last=$(yaxwm -c print numws)
+	if yaxwm -c print numws 2>&1 | grep -q 'error:'; then
+		last=$(awk '/^numws:/ {print $2}' "$YAXWM_STATUS")
+	else
+		last=$(yaxwm -c print numws)
+	fi
 	yaxwm -c set ws="$last" pad left=200 right=200 top=100 bottom=100
 	yaxwm -c set ws="$last" gap width=50
 
 
-	# misc settings
+	# global settings
 	# ---------------------
-	# ignore size hints on tiled windows, focus windows when
-	# receiving activation, and enable focus-follows-mouse
-	yaxwm -c set tile_hints=false focus_urgent=true focus_mouse=true
+	# focus windows when receiving activation and enable focus-follows-mouse
+	yaxwm -c set focus_open=true focus_urgent=true focus_mouse=false
 
-	# minimum width/height for resizing, and minimum allowed on-screen
-	# when moving (defines how much a window can be moved off-screen)
+	# place clients at the tail and ignore size hints on tiled windows
+	yaxwm -c set tile_tohead=0 tile_hints=false
+
+	# minimum width/height for resizing, and minimum allowed on-screen when moving
 	yaxwm -c set win_minwh=50 win_minxy=10
 
 	# disable gaps and borders in single window layouts
@@ -51,14 +73,13 @@ logfile="$HOME/.yaxwmrc.log"
 
 	# borders
 	# ---------
-
 	# set border width and colour for each window state
-	yaxwm -c set border width=1 colour focus='#28435F' unfocus='#1B1B1C' urgent='#ee5555'
+	# yaxwm -c set border width=1 colour focus='#6699cc' unfocus='#000000' urgent='#ee5555'
 
 	# alternatively, enable split borders and colours
-#	yaxwm -c set border width=5 outer=3 colour \
-#		focus='#375675' unfocus='#1C1C1C' urgent='#ee5555' \
-#		outer_focus='#222222' outer_unfocus='#222222' outer_urgent='#222222'
+	yaxwm -c set border width=1 outer=0 colour \
+		focus='#242424' unfocus='#0a0a0a' urgent='#ee5555' \
+		outer_focus='#242424' outer_unfocus='#0a0a0a' outer_urgent='#222222'
 
 
 	# window rules

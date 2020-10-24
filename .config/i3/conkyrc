@@ -1,0 +1,41 @@
+conky.config = {
+	out_to_console = true,
+	out_to_x = false,
+	background = false,
+	cpu_avg_samples = 2,
+	net_avg_samples = 2,
+	no_buffers = true,
+	out_to_stderr = false,
+	update_interval = 3.0,
+	uppercase = false,
+	use_spacer = 'none',
+
+};
+
+-- # JSON for i3bar #
+-- # { "full_text" : "Up:  ${uptime_short}  " , "color" : "\#CDCDCD" }, #
+-- # { "full_text" : "${loadavg}  " , "color" : "\#CDCDCD" }, #
+-- # { "full_text" : "${execpi 3 /home/doug/bin/cpu-temp.pl | cut -c1-7}  ", "color" : "\#CDCDCD" },
+
+conky.text = [[
+
+[
+
+	{ "full_text" : "CPU:  ${cpu}%  " , "color" :
+		${if_match ${cpu}>=50}"\#FF2828"${else}${if_match ${cpu}>=25}"\#D9D921"${else}"\#CDCDCD"${endif}${endif} },
+
+	{ "full_text" : "${exec cpu_temp.pl}  ", "color" : "\#CDCDCD" },
+
+	{ "full_text" : "MEM:  ${memperc}%  " , "color" :
+		${if_match ${memperc}>=40}"\#FF2828"${else}${if_match ${memperc}>=25}"\#D9D921"${else}"\#CDCDCD"${endif}${endif} },
+
+	{ "full_text" : "BAT0:  ${battery_percent BAT0}%  ", "color" :
+	    ${if_match ${battery_percent BAT0}<=15}"\#FF2828"${else}${if_match ${battery_percent BAT0}<=25}"\#D9D921"${else}"\#CDCDCD"${endif}${endif} },
+
+	{ "full_text" : "NET:  ${upspeed wlp1s0}    ${downspeed wlp1s0}  " , "color" : "\#CDCDCD" },
+
+	{ "full_text" : "${time %a %e %b  %k:%M}  " , "color" : "\#CDCDCD" }
+
+],
+
+]];

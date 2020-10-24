@@ -1,27 +1,51 @@
-! Base colors
-*.foreground:  #E1E1E1
-*.background:  #1c2023
-*.cursorColor: #778899
+Xft.dpi: 96
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+! Xcursor.size:11
 
-*.color0:  #1c2023
-*.color1:  #bf616a
-*.color2:  #a3be8c
-*.color3:  #ebcb8b
-*.color4:  #8fa1b3
-*.color5:  #b48ead
-*.color6:  #96b5b4
-*.color7:  #E1E1E1
-*.color8:  #919ba0
-*.color9:  #bf616a
-*.color10: #a3be8c
-*.color11: #ebcb8b
-*.color12: #8fa1b3
-*.color13: #b48ead
-*.color14: #96b5b4
-*.color15: #c0c5ce
+! special
+*.foreground:   #dee1e3
+*.background:   #171819
+*.cursorColor:  #dee1e3
+
+! black
+*.color0:       #1e1f21
+*.color8:       #373b41
+
+! red
+*.color1:       #a54242
+*.color9:       #cc6666
+
+! green
+*.color2:       #459440
+*.color10:      #b5bd68
+
+! yellow
+*.color3:       #de935f
+*.color11:      #f0c674
+
+! blue
+*.color4:       #1b4c75
+*.color12:      #4f8dc2
+
+! magenta
+*.color5:       #85678f
+*.color13:      #b294bb
+
+! cyan
+*.color6:       #5e8d87
+*.color14:      #8abeb7
+
+! white
+*.color7:       #707880
+*.color15:      #c5c8c6
 
 ! Rofi
-rofi.font: monospace 12
+rofi.font: monospace 10
 rofi.padding: 20
 rofi.line-padding: 2
 rofi.color-enabled: true
@@ -36,9 +60,9 @@ rofi.kb-cancel: Escape,Alt+F1
 ! xterm
 xterm*termName: xterm-256color
 xterm*font: monospace
-xterm*faceName: monospace:size=11
+xterm*faceName: DejaVu Markup:size=9
 xterm*loginShell: true
-xterm*vt100*geometry: 90x34
+xterm*vt100*geometry: 96x34
 xterm*saveLines: 2000
 xterm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
 xterm*eightBitInput: false
@@ -54,7 +78,7 @@ URxvt*scrollBar_right: false
 URxvt*internalBorder: 0
 URxvt*externalBorder: 0
 URxvt*letterSpace: -1
-URxvt.font: xft:monospace:size=11
+URxvt.font: xft:monospace:size=10
 URxvt.copyCommand: xclip -i -selection clipboard
 URxvt.pasteCommand: xclip -o -selection clipboard
 URxvt.urlLauncher: exo-open
@@ -66,3 +90,62 @@ URxvt.tabbed.tabbar-bg: 16
 URxvt.tabbed.tab-fg: 15
 URxvt.tabbed.tab-bg: 4
 URxvt*buffered: false
+
+!source: https://wiki.archlinux.org/index.php/X_resources
+!XCalc-----------------------------------------------------------------------
+XCalc*geometry:                        256x400
+XCalc*ti.bevel.background:             #111111
+XCalc*ti.bevel.screen.background:      #000000
+XCalc*ti.bevel.screen.DEG.background:  #000000
+XCalc*ti.bevel.screen.DEG.foreground:  #1E8C86
+XCalc*ti.bevel.screen.GRAD.background: #000000
+XCalc*ti.bevel.screen.GRAD.foreground: #1E8C86
+XCalc*ti.bevel.screen.RAD.background:  #000000
+XCalc*ti.bevel.screen.RAD.foreground:  #1E8C86
+XCalc*ti.bevel.screen.INV.background:  #000000
+XCalc*ti.bevel.screen.INV.foreground:  Red
+XCalc*ti.bevel.screen.LCD.background:  #000000
+XCalc*ti.bevel.screen.LCD.foreground:  #1E8C86
+XCalc*ti.bevel.screen.LCD.shadowWidth: 0
+XCalc*ti.bevel.screen.M.background:    #000000
+XCalc*ti.bevel.screen.M.foreground:    #1E8C86
+XCalc*ti.bevel.screen.P.background:    #000000
+XCalc*ti.bevel.screen.P.foreground:    #D9D918
+XCalc*ti.Command.foreground:  #ECECEC
+XCalc*ti.Command.background:  #474747
+XCalc*Cursor:                 hand2
+XCalc*ShapeStyle:             rectangle
+!XCalc*Font:       6x13
+XCalc*Font:       -*-terminus-medium-r-normal-*-14-140-*-*-*-*-iso10646-1
+
+! XCalc button colors
+XCalc*ti.button4.background:	#C52934
+XCalc*ti.button5.background:	#911E26
+
+XCalc.ti.button27.background:	#4D175C
+XCalc.ti.button28.background:	#4D175C
+XCalc.ti.button29.background:	#4D175C
+XCalc.ti.button32.background:	#4D175C
+XCalc.ti.button33.background:	#4D175C
+XCalc.ti.button34.background:	#4D175C
+
+XCalc.ti.button35.background:	#2F7A3E
+XCalc.ti.button40.background:	#2F7A3E
+XCalc.ti.button45.background:	#2F7A3E
+XCalc.ti.button50.background:	#2F7A3E
+
+XCalc.ti.button37.background:	#346BA1
+XCalc.ti.button38.background:	#346BA1
+XCalc.ti.button39.background:	#346BA1
+XCalc.ti.button42.background:	#346BA1
+XCalc.ti.button43.background:	#346BA1
+XCalc.ti.button44.background:	#346BA1
+XCalc.ti.button47.background:	#346BA1
+XCalc.ti.button48.background:	#346BA1
+XCalc.ti.button49.background:	#346BA1
+XCalc.ti.button52.background:	#346BA1
+
+XCalc*ti.button53.background:	#998031
+XCalc*ti.button54.background:	#806B29
+XCalc*ti.button55.background:	#665621
+
